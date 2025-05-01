@@ -1,39 +1,87 @@
-# Parallel-K-Means-Algorithm
+# Parallel K-Means Clustering for Large Datasets
 
-## Background  
+## 📌 Overview
+This project accelerates the K-Means clustering algorithm using parallel computing techniques. K-Means is a popular unsupervised learning algorithm used in machine learning for clustering tasks. While effective, its sequential implementation becomes slow for large datasets or higher cluster counts.
 
-K-Means Clustering is one of the popularly used unsupervised learning algorithms because of its simplicity and versatility. It's called simple as it has an iterative set of steps that is done until the results converge at an acceptable point.  
+This project focuses on reducing runtime by applying **data parallelism** to the most time-consuming step—**distance computation** between data points and centroids.
 
-I am a machine learning enthusiast & have used this algorithm in a few of my projects before. I always thought that K-Means is a simple but versatile clustering algorithm with a decent time complexity.   
+---
 
-Given a dataset of n data points, the time complexity is O(nkt) where n is the number of data points, k is number of clusters formed and t is the number of iterations it takes for convergence.   
+## ⚙️ Project Objectives
 
-The problem is that it works slowly for a data set which is huge and/or has a relatively high number of clusters. To solve this issue, using data parallelism to calculate distances may result in better runtime.   
+- Implement both sequential and parallel versions of the K-Means algorithm.
+- Optimize the distance computation step using parallelization.
+- Compare the runtime of both approaches using multiple datasets.
+- Ensure memory efficiency and scalability.
+
+---
+
+## 🧠 K-Means Algorithm Steps
+
+1. Randomly initialize `k` centroids.
+2. Compute the distance between each data point and all centroids.
+3. Assign each data point to the nearest centroid.
+4. Update centroids based on the assigned data points.
+5. Repeat Steps 2-4 until convergence (centroids don't change significantly).
+
+> 🔍 The distance computation (Step 2) is the most computationally intensive part and is parallelized in this project.
+
+---
+
+## 💡 Why Parallelize?
+
+- **Time Complexity:** O(n × k × t)
+  - n = number of data points  
+  - k = number of clusters  
+  - t = number of iterations for convergence
+- With large datasets or high cluster counts, the execution time increases significantly.
+- Since each distance calculation is independent, it's ideal for **parallelization**.
+
+---
+
+## 🛠️ Implementation Details
+
+- **Language:** Python
+- **Parallelization Tools:** Python's multiprocessing / NumPy optimization
+- **Main Script:** `pkmeans.py`
+- **Data Folder:** Contains sample datasets for testing
+- **Outputs:** Cluster assignments, centroid locations, and performance comparison
+
+---
+
+## 📊 Performance Evaluation
+
+- Compare execution time between sequential and parallel versions.
+- Evaluate scalability using datasets of increasing size and dimensions.
+- Analyze improvements in runtime and resource usage.
+
+---
+
+## 🌍 Applications
+
+- Market Segmentation
+- Image Recognition and Compression
+- Anomaly Detection
+- Document Clustering
+- Sensor Data Analysis
+
+---
+
+## 👨‍💻 Team Members
+
+| Name                     | Registration No. |
+|--------------------------|------------------|
+| Shivam Kumar Gupta       | 20214082         |
+| Tony Jain                | 20214005         |
+| Shresth Sonkar           | 20214272         |
+| Shweta Sonkar            | 20214298         |
+| Sanchita Sharma          | 20214210         |
+| Sumit Kasaudhan          | 20214250         |
+| Sangamalla Santhosh Kumar| 20214277         |
+| Sundram Mishra           | 20214020         |
+| Seera Yashwant           | 20214521         |
+| Sanidhya Diwakar         | 20214010         |
+
+---
 
 
-## Objectives
-
-The sequential K-Means algorithms runs iterations of the same set of steps until it reaches and acceptable convergence. Initially k cluster centroids are chosen from the datapoints randomly/ using some criteria. Enhancing choosing methods for the centroids is not a part of this project.   
-
-K-Means Algorithm Steps:
-1) Find the distance of each data point to all centroids.   
-2) Assign each data point to cluster with closest centroid.   
-3) Update Centroid Values   
-
-Repeat until there is no difference between the consecutive iteration results.  
-
-
-Out of the above-mentioned steps, maximum time taken is to calculate the distance from each centroid. The same operation is done on each datapoint though at each iteration there is a variation in the centroids used.   
-The main goal for this project is to improve run time for large datasets with more than 3 attributes by parallelizing the distance calculation for each datapoint.
-
-
-## Files:
-
-### pkmeans.py   
-Contains the code to sequential and parallel implementations of the K-Means algorithm.
-
-### Data    
-Datasets used are stored in the data folder. Make sure download code with data for proper execution.
-
-### Report    
-Explaination about the project and how it was executed
