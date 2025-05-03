@@ -83,8 +83,8 @@ def mpKmeans(df, cidx, n, k, cpus):
 
 if __name__ == "__main__":  # Ensure this is the entry point
     df = pd.read_csv('data/Wholesale customers data.csv')
-#    df = pd.read_csv('data/winequality-white.csv',sep=';')
-#    df = df[df.columns[:8]]
+    # df = pd.read_csv('data/winequality-white.csv',sep=';')
+    # df = df[df.columns[:8]]
     k_values = [3, 4, 5, 6, 7, 8]
     n = df.shape[0]
     print("Number of Datapoints =", n)
@@ -147,5 +147,5 @@ if __name__ == "__main__":  # Ensure this is the entry point
     plt.legend()
     plt.grid(True)
     plt.savefig('result/mean_iteration_time_comparison_sort_dataset.png')
-    # plt.savefig('result/execution_time_comparison_large_dataset.png')
+    # plt.savefig('result/mean_time_comparison_large_dataset.png')
     plt.close()
